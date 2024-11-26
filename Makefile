@@ -6,7 +6,7 @@
 #    By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/12 10:42:37 by camarcos          #+#    #+#              #
-#    Updated: 2024/11/20 18:51:47 by camarcos         ###   ########.fr        #
+#    Updated: 2024/11/26 13:29:15 by camarcos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,14 @@ VPATH = src:src/movements:src/stack
 
 # SOURCE FILES
 SRC		= 	swap.c push.c rotate.c reverse_rotate.c \
-					utils.c create_free.c arguments.c main.c
+					utils.c create_free.c arguments.c main.c pruebas.c
 
 # OBJECT FILES
 OBJ_FILES 		= $(SRC:.c=.o)
 
 # COMPILER OPTIONS 
 CC		= gcc
-FLAGS	= -Wall -Werror -Wextra
+FLAGS	= -Wall -Werror -Wextra -g3
 INCLUDE = -I includes
 RM		= rm -f
 
@@ -66,3 +66,7 @@ fclean: clean
 re: fclean all
 
 .PHONY:		all clean fclean re
+
+t: all
+	@cp $(NAME) tester/
+	@cd tester; bash push_swap_test_linux.sh 50 50

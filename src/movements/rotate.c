@@ -6,13 +6,13 @@
 /*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:42:23 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/20 18:44:43 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:54:57 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	rotate(t_stack *stack)
+void	rotate(t_stack *stack, int print, const char * move)
 {
 	t_node	*first;
 	t_node	*last;
@@ -23,25 +23,26 @@ void	rotate(t_stack *stack)
 	last = stack->top;
 	stack->top = first->next;
 	while (last->next)
-	{
 		last = last->next;
-	}
 	last->next = first;
 	first->next = NULL;
+	if (print)
+		write(1, move, strlen(move));
 }
 
 void	ra(t_stack *a)
 {
-	rotate(a);
+	rotate(a, 1, "ra\n");
 }
 
 void	rb(t_stack *b)
 {
-	rotate(b);
+	rotate(b, 1, "rb\n");
 }
 
 void	rr(t_stack *a, t_stack *b)
 {
-	rotate(a);
-	rotate(b);
+	rotate(a, 0, NULL);
+	rotate(b, 0, NULL);
+	write(1, "rr\n", 3);
 }

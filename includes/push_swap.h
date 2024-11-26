@@ -6,7 +6,7 @@
 /*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:42:14 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/20 19:31:34 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:54:44 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_stack //para represertar el stack completo
 }	t_stack;
 
 //moves
-void	swap(t_stack *stack);
+void	swap(t_stack *stack, int print, const char *move);
 void	sa(t_stack *a);
 void	sb(t_stack *b);
 void	ss(t_stack *a, t_stack *b);
@@ -42,7 +42,7 @@ void	push(t_stack *from, t_stack *to);
 void	pa(t_stack *a, t_stack *b);
 void	pb(t_stack *a, t_stack *b);
 
-void	rotate(t_stack *stack);
+void	rotate(t_stack *stack, int print, const char * move);
 void	ra(t_stack *a);
 void	rb(t_stack *b);
 void	rr(t_stack *a, t_stack *b);

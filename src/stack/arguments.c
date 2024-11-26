@@ -6,7 +6,7 @@
 /*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:55:24 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/20 19:22:07 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:16:23 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	sort_two(t_stack *a)
 {
 	if (a->top->value > a->top->next->value)
+	{
 		sa(a);
+		write(1, "sa\n", 3);
+	}
 }
 //cuando hay solo dos argumentos
 
@@ -33,24 +36,34 @@ void	sort_three(t_stack *a)
 	else if (f > s && s > t)
 	{
 		sa(a);
+		write(1, "sa\n", 3);
 		rra(a);
+		write(1, "rra\n", 4);
 	}
 	else if (f > s && s < t && f > t)
+	{
 		ra(a);
+		write(1, "ra\n", 3);
+	}
 	else if (f < s && s > t && f < t)
 	{
 		sa(a);
+		write(1, "sa\n", 3);
 		ra(a);
+		write(1, "ra\n", 3);
 	}
 	else if (f < s && s > t && f > t)
+	{
 		rra(a);
+		write(1, "rra\n", 4);
+	}
 }
 //cuando hay tres argumentos
 
 void	sort_small_stack(t_stack *a, t_stack *b)
 {
 	while (a->size > 3)
-		pb(b, a);
+		pb(a, b);
 	if (a->size == 2)
 		sort_two(a);
 	else if (a->size == 3)

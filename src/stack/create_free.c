@@ -6,7 +6,7 @@
 /*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:03:41 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/20 18:46:49 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:11:22 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_node	*create_node(int value)
 {
 	t_node	*new_node;
-
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
 		error_exit("Entrada no válida: no es un número entero.");
@@ -41,6 +40,7 @@ t_stack	*init_stack(void)
 void	push_stack(t_stack *stack, int value)
 {
 	t_node	*new_node;
+	t_node *last;
 
 	new_node = create_node(value);
 	if (!new_node)
@@ -48,8 +48,17 @@ void	push_stack(t_stack *stack, int value)
 		error_exit("Error: no se pudo asignar memoria para el nodo");
 		exit(EXIT_FAILURE);
 	}
-	new_node->next = stack->top;
-	stack->top = new_node;
+	new_node->next = NULL;
+
+	last = stack->top;
+	if (last == NULL)
+		stack->top = new_node;
+	else
+	{
+		while (last->next)
+			last = last->next;
+		last->next = new_node;
+	}
 	stack->size++;
 }
 // añade un nuevo nodo en la parte superior de la pila

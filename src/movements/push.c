@@ -6,13 +6,13 @@
 /*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:42:05 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/20 18:44:15 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:29:04 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	push(t_stack *from, t_stack *to)
+void	push(t_stack *from, t_stack *to, int print, const char *move)
 {
 	t_node	*temp;
 
@@ -24,14 +24,21 @@ void	push(t_stack *from, t_stack *to)
 	to->top = temp;
 	from->size--;
 	to->size++;
+	if (print)
+		write(1, move, ft_strlen(move));
 }
 
 void	pa(t_stack *a, t_stack *b)
 {
-	push(b, a);
+	push(b, a, 1, "pa\n");
 }
-
 void	pb(t_stack *a, t_stack *b)
 {
-	push(a, b);
+	push(a, b, 1, "pb\n");
+}
+void pp(t_stack *a, t_stack *b)
+{
+	push(b, a, 0, NULL);
+	push(a, b, 0, NULL);
+	write(1, "pp\n", 3);
 }

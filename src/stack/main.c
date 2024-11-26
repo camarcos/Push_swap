@@ -6,7 +6,7 @@
 /*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:26:18 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/21 10:56:19 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:34:32 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,25 @@ void	initialize_stacks(int argc, char **argv, t_stack **a, t_stack **b)
 
 void	sort_stack(t_stack *a, t_stack *b)
 {
+	// /* ========================================= */
+
+	// t_node *aux = a->top;
+
+	// while (aux)
+	// {
+	// 	printf("=> %d [%p]\n", aux->value, aux->next);
+	// 	aux = aux->next;
+	// }
+
+	// /* ========================================= */
+
 	if (is_sorted(a))
 	{
 		free_list(a);
 		free_list(b);
 		exit(0);
 	}
+
 	if (a->size == 2)
 		sort_two(a);
 	else if (a->size == 3)
@@ -63,6 +76,7 @@ void	sort_stack(t_stack *a, t_stack *b)
 		sort_small_stack(a, b);
 	else
 		sort_large_stack(a, b);
+	
 	free_list(a);
 	free_list(b);
 }
@@ -98,7 +112,6 @@ int	main(int argc, char **argv)
 		return (0);
 	}	
 	initialize_stacks(argc, argv, &a, &b);
-	printf("------++++++++++++++++++++++++--");
 	sort_stack(a, b);
 	return (0);
 }

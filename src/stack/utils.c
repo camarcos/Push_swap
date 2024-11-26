@@ -6,7 +6,7 @@
 /*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:45:57 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/20 19:21:45 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:31:52 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ long	ft_atol(const char *str)
 }
 //mirar si son solo numeros
 
+long	ft_atol_strict(const char *str)
+{
+	
+}
+
+
 int	duplicates(t_stack *a)
 {
 	t_node	*current;
@@ -80,9 +86,12 @@ int	duplicates(t_stack *a)
 }
 //comprobar si hay repetidos
 
+/* TODO: quitar parametro */
 void	error_exit(const char *message)
 {
-	perror(message);
+	(void) message;
+	// perror(message);
+	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 //mensaje de error y salida del programa
