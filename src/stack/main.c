@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:26:18 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/26 13:34:32 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:50:45 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,12 @@ void	initialize_stacks(int argc, char **argv, t_stack **a, t_stack **b)
 
 void	sort_stack(t_stack *a, t_stack *b)
 {
-	// /* ========================================= */
-
-	// t_node *aux = a->top;
-
-	// while (aux)
-	// {
-	// 	printf("=> %d [%p]\n", aux->value, aux->next);
-	// 	aux = aux->next;
-	// }
-
-	// /* ========================================= */
-
 	if (is_sorted(a))
 	{
 		free_list(a);
 		free_list(b);
 		exit(0);
 	}
-
 	if (a->size == 2)
 		sort_two(a);
 	else if (a->size == 3)

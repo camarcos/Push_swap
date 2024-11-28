@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:45:57 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/26 12:31:52 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/29 00:06:06 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 //verifica si esta ordenado
+// 1--> true 2--> false
 
 long	ft_atol(const char *str)
 {
@@ -59,11 +60,7 @@ long	ft_atol(const char *str)
 }
 //mirar si son solo numeros
 
-long	ft_atol_strict(const char *str)
-{
-	
-}
-
+// long	ft_atol_strict(const char *str)
 
 int	duplicates(t_stack *a)
 {
@@ -86,11 +83,9 @@ int	duplicates(t_stack *a)
 }
 //comprobar si hay repetidos
 
-/* TODO: quitar parametro */
 void	error_exit(const char *message)
 {
 	(void) message;
-	// perror(message);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:42:32 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/26 16:25:58 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:45:58 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 
 void	reverse_rotate(t_stack *stack, int print, const char *move)
 {
-	t_node	*second_last;
-	t_node	*last;
+	t_node  *last;
+    t_node  *prev;
 
-	if (stack->size < 2)
-		return ;
-	while (last->next)
-	{
-		second_last = last;
-		last = last->next;
-	}
-	second_last->next = NULL;
-	last->next = stack->top;
-	stack->top = last;
+    if (stack->size < 2)
+        return ;
+    last = stack->top;
+    prev = NULL;
+    while (last->next)
+    {
+        prev = last;
+        last = last->next;
+    }
+    if (prev)
+        prev->next = NULL;
+    last->next = stack->top;
+    stack->top = last;
 	if (print)
-		write(1, move, strlen(move));
+		write(1, move, ft_strlen(move));
 }
 
 void	rra(t_stack *a)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:42:19 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/26 13:50:27 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:46:24 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	swap(t_stack *stack, int print, const char *move)
 	second->next = first;
 	stack->top = second;
 	if (print)
-		write(1, move, strlen(move));
+		write(1, move, ft_strlen(move));
 }
 
 void	sa(t_stack *a)

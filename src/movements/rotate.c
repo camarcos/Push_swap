@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:42:23 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/26 13:54:57 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:46:17 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	rotate(t_stack *stack, int print, const char * move)
 	last->next = first;
 	first->next = NULL;
 	if (print)
-		write(1, move, strlen(move));
+		write(1, move, ft_strlen(move));
 }
 
 void	ra(t_stack *a)
