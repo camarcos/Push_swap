@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:42:14 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/29 13:52:57 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/11/30 10:40:34 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ void	sa(t_stack *a);
 void	sb(t_stack *b);
 void	ss(t_stack *a, t_stack *b);
 
-void	push(t_stack *from, t_stack *to, int print, const char * move);
+void	push(t_stack *from, t_stack *to, int print, const char *move);
 void	pa(t_stack *a, t_stack *b);
 void	pb(t_stack *a, t_stack *b);
 
-void	rotate(t_stack *stack, int print, const char * move);
+void	rotate(t_stack *stack, int print, const char *move);
 void	ra(t_stack *a);
 void	rb(t_stack *b);
 void	rr(t_stack *a, t_stack *b);
 
-void	reverse_rotate(t_stack *stack, int print, const char * move);
+void	reverse_rotate(t_stack *stack, int print, const char *move);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);

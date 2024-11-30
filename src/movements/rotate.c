@@ -6,13 +6,13 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:42:23 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/28 13:46:17 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/11/30 10:41:01 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	rotate(t_stack *stack, int print, const char * move)
+void	rotate(t_stack *stack, int print, const char *move)
 {
 	t_node	*first;
 	t_node	*last;

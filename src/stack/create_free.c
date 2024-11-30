@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:03:41 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/29 13:29:49 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/11/30 10:49:31 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_node	*create_node(int value)
 {
 	t_node	*new_node;
+
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
 		error_exit("Entrada no válida: no es un número entero.");
@@ -40,7 +41,7 @@ t_stack	*init_stack(void)
 void	push_stack(t_stack *stack, int value)
 {
 	t_node	*new_node;
-	t_node *last;
+	t_node	*last;
 
 	new_node = create_node(value);
 	if (!new_node)
