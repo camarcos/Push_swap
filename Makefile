@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+         #
+#    By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/12 10:42:37 by camarcos          #+#    #+#              #
-#    Updated: 2024/11/26 13:29:15 by camarcos         ###   ########.fr        #
+#    Updated: 2024/11/29 09:23:29 by carolinamc       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ VPATH = src:src/movements:src/stack
 
 # SOURCE FILES
 SRC		= 	swap.c push.c rotate.c reverse_rotate.c \
-					utils.c create_free.c arguments.c main.c pruebas.c
+					utils.c create_free.c arguments.c main.c
 
 # OBJECT FILES
 OBJ_FILES 		= $(SRC:.c=.o)
@@ -44,7 +44,7 @@ CLEAR	=	\033[0m
 all:	$(NAME)
 $(NAME):	$(OBJ_FILES)
 	@make -sC libft
-	@echo "$(PINK)Compiling the PIPEX program.$(CLEAR)"
+	@echo "$(PINK)Compiling the PUSH_SWAP program.$(CLEAR)"
 	$(CC) $(FLAGS) $(OBJ_FILES) $(INCLUDE) $(LIBFT) -o $(NAME)
 	@echo "$(GREEN)[OK]\n$(CLEAR)$(GREEN)Success!$(CLEAR)\n"
 

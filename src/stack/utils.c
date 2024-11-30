@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:45:57 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/29 00:06:06 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/11/29 13:54:29 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,20 @@ int	is_sorted(t_stack *a)
 	}
 	return (1);
 }
-//verifica si esta ordenado
-// 1--> true 2--> false
+
+long	validate_max_min(const char **str, long result, int sign)
+{
+	while (**str >= '0' && **str <= '9')
+	{
+		if (sign == 1 && result > (LONG_MAX - (**str - '0')) / 10)
+			return (LONG_MAX);
+		if (sign == -1 && result > (LONG_MAX - (**str - '0')) / 10)
+			return (LONG_MIN);
+		result = result * 10 + (**str - '0');
+		(*str)++;
+	}
+	return (result);
+}
 
 long	ft_atol(const char *str)
 {
@@ -45,22 +57,14 @@ long	ft_atol(const char *str)
 			sign = -1;
 		str++;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		if (sign == 1 && result > (LONG_MAX - (*str - '0')) / 10)
-			return (LONG_MAX);
-		if (sign == -1 && result > (LONG_MAX - (*str - '0')) / 10)
-			return (LONG_MIN);
-		result = result * 10 + (*str - '0');
-		str++;
-	}
+	result = validate_max_min(&str, result, sign);
+	if (*str)
+		error_exit("Error: no es un número entero.");
 	if (sign == -1)
 		result = -result;
 	return (result);
 }
 //mirar si son solo numeros
-
-// long	ft_atol_strict(const char *str)
 
 int	duplicates(t_stack *a)
 {

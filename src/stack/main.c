@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:26:18 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/28 17:50:45 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/11/29 15:05:57 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,16 @@ void	sort_stack(t_stack *a, t_stack *b)
 		sort_two(a);
 	else if (a->size == 3)
 		sort_three(a);
-	else if (a->size <= 5)
+	else if (a->size == 4 || a->size == 5)
+	{
+		//printf("--------------\n");
 		sort_small_stack(a, b);
+	}
 	else
+	{
+		//printf("------333\n");
 		sort_large_stack(a, b);
-	
+	}
 	free_list(a);
 	free_list(b);
 }
@@ -95,10 +100,15 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 	{
-		printf ("Error, numero de argumetos incorrecto\n");
+		error_exit("Error, numero de argumetos incorrecto\n");
 		return (0);
 	}	
 	initialize_stacks(argc, argv, &a, &b);
 	sort_stack(a, b);
 	return (0);
+}
+
+void	split_numbers()
+{
+		
 }

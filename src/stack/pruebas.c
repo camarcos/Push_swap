@@ -6,69 +6,92 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:28:44 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/29 00:12:56 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/11/29 15:13:17 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-// static long	ft_atol_strict(char **split, long i)
-// {
-// 	long	result;
-// 	int		j;
-// 	int		sign;
-
-// 	result = 0;
-// 	j = 0;
-// 	sign = check_sign(split, i, &j);
-// 	while (split[i][j])
-// 	{
-// 		if (!ft_isdigit(split[i][j]))
-// 		{
-// 			ft_free_matrix(split);
-// 			ft_error();
-// 		}
-// 		result = result * 10 + split[i][j++] - '0';
-// 	}
-// 	result = result * sign;
-// 	check_fit_int(result, split);
-// 	return (result);
-// }
-
-void	sort_small_stack(t_stack *a, t_stack *b)
+void	process_quoted_argument(const char *arg, t_stack *a)
 {
-	printf("--------------");
-	while (a->size > 3)
-		pb(a, b);
-	if (a->size == 2)
-		sort_two(a);
-	else if (a->size == 3)
-		sort_three(a);
-	while (b->size > 0)
-	{
-		pa(a, b);
-		if (a->top->value > a->top->next->value)
-			sa(a);
-	}
-}
+	char	**numbers;
+	int		i;
 
-void	sort_stack(t_stack *a, t_stack *b)
-{
-	if (is_sorted(a))
-	{
-		free_list(a);
-		free_list(b);
-		exit(0);
-	}
-	if (a->size == 2)
-		sort_two(a);
-	else if (a->size == 3)
-		sort_three(a);
-	else if (a->size <= 5)
-		sort_small_stack(a, b);
-	else
-		sort_large_stack(a, b);
+	// Divide la cadena en números utilizando 'ft_split'
+	numbers = ft_split(arg, ' ');
+	if (!numbers)
+		error_exit("Error al dividir la cadena.");
 	
-	free_list(a);
-	free_list(b);
+	// Recorre los números divididos y agrégalos a la pila
+	i = 0;
+	while (numbers[i])
+	{
+		if (!is_valid_number(numbers[i])) // Valida que cada número sea válido
+			error_exit("Entrada no válida.");
+		push_number_to_stack(ft_atoi(numbers[i]), a); // Convierte y agrega a la pila
+		i++;
+	}
+
+	// Libera la memoria del arreglo dividido
+	free_split(numbers);
 }
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]); // Libera cada cadena individual
+		i++;
+	}
+	free(split); // Libera el arreglo completo
+}
+void	parse_arguments(int argc, char **argv, t_stack *a)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (ft_strchr(argv[i], ' ')) // Verifica si hay espacios en el argumento
+			process_quoted_argument(argv[i], a);
+		else
+		{
+			if (!is_valid_number(argv[i])) // Valida el número
+				error_exit("Entrada no válida.");
+			push_number_to_stack(ft_atoi(argv[i]), a); // Agrega el número a la pila
+		}
+		i++;
+	}
+}
+int	is_valid_number(const char *str)
+{
+	if (!ft_isdigit(*str) && *str != '-' && *str != '+') // Valida signo y dígitos
+		return (0);
+	if ((*str == '-' || *str == '+') && !ft_isdigit(*(str + 1)))
+		return (0);
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
+}
+int	main(int argc, char **argv)
+{
+	t_stack	a;
+	t_stack	b;
+
+	if (argc < 2)
+		return (0);
+	initialize_stack(&a);
+	initialize_stack(&b);
+	parse_arguments(argc, argv, &a);
+	sort_stack(&a, &b);
+	free_stack(&a);
+	free_stack(&b);
+	return (0);
+}
+

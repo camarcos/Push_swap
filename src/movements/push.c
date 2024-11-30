@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:42:05 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/27 12:26:53 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/11/29 13:07:04 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,8 @@ void	pa(t_stack *a, t_stack *b)
 {
 	push(b, a, 1, "pa\n");
 }
+
 void	pb(t_stack *a, t_stack *b)
 {
 	push(a, b, 1, "pb\n");
-}
-void pp(t_stack *a, t_stack *b)
-{
-	push(b, a, 0, NULL);
-	push(a, b, 0, NULL);
-	write(1, "pp\n", 3);
 }

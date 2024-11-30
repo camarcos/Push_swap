@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:03:41 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/27 13:20:34 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/11/29 13:29:49 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	push_stack(t_stack *stack, int value)
 		exit(EXIT_FAILURE);
 	}
 	new_node->next = NULL;
-
 	last = stack->top;
 	if (last == NULL)
 		stack->top = new_node;

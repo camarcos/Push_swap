@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:42:14 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/28 10:10:45 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/11/29 13:52:57 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	free_list(t_stack *stack);
 
 //utils
 int		is_sorted(t_stack *a);
+long	validate_max_min(const char **str, long result, int sign);
 long	ft_atol(const char *str);
 int		duplicates(t_stack *a);
 void	error_exit(const char *message);
@@ -77,7 +78,7 @@ void	sort_large_stack(t_stack *a, t_stack *b);
 void	validate_argu(int argc, char **argv);
 void	initialize_stacks(int argc, char **argv, t_stack **a, t_stack **b);
 void	sort_stack(t_stack *a, t_stack *b);
-int		main(int argc, char **argv);
 int		find_max(t_stack *a);
+int		main(int argc, char **argv);
 
 #endif
