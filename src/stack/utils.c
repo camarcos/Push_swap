@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:45:57 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/29 13:54:29 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/03 09:25:02 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,3 +105,18 @@ int	calculate_max_bits(int max_num)
 	return (max_bits);
 }
 //calcular el numerode bits para saber el numero de iteraciones necesario
+
+int	print_stack(t_stack *stack)
+{
+	t_node	*current;
+
+	if (!stack || !stack->top)
+		return (0);
+	current = stack->top;
+	while (current)
+	{
+		printf("%d\n", current->value);
+		current = current->next;
+	}
+	return (1);
+}

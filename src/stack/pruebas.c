@@ -6,90 +6,264 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:28:44 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/30 10:55:12 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/03 16:49:28 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	process_quoted_argument(const char *arg, t_stack *a)
+// void ft_parse_args(char **argv, t_stack **a)
+// {
+// 	int i;
+// 	char **split;
+// 	long num;
+
+// 	i = 0;
+// 	while (argv[++i])
+// 	{
+// 		split = ft_split(argv[i], ' ');
+// 		if (!split[1])
+// 		{
+// 			if (!split[0])
+// 			{
+// 				ft_free_split(split);
+// 				error_exit("Error: no es un número entero.");
+// 			}
+// 			num = ft_atol_strict(split, 0);
+// 		}
+// 		free_split(split);
+// 	}
+// 	duplicates(*a);
+// }
+
+void	radix(t_stack *a, t_stack *b)
 {
-	char	**numbers;
+    int		max_index;
+    int		bin_digits;
+    int		i, j;
+    int		stack_size;
+
+    assign_indices(a);
+    max_index = find_max_index(a);
+    bin_digits = calculate_max_bits(max_index);
+    stack_size = a->size;
+    i = 0;
+    while (i < bin_digits)
+    {
+        j = 0;
+        while (j < stack_size)
+        {
+            if (((a->top->index >> i) & 1) == 0)
+			{
+                pb(a, b);
+				// printf("hola\n");
+			}	
+            else
+                ra(a);
+            j++;
+        }
+        // if (i < bin_digits - 1)
+        // {
+            while (b->size > 0)
+			{
+                pa(a, b);
+				// printf("adios\n");	
+			}
+        //}
+        i++;
+    }
+    while (b->size > 0)
+        pa(a, b);
+    if (!is_sorted(a))
+        error_exit("Error: No se ordenó correctamente.");
+}
+
+int	ft_listsize(t_node *stack)
+{
+	t_node	*aux;
 	int		i;
 
-	numbers = ft_split(arg, ' ');
-	if (!numbers)
-		error_exit("Error al dividir la cadena.");
 	i = 0;
-	while (numbers[i])
+	aux = stack;
+	while (aux)
 	{
-		if (!is_valid_number(numbers[i]))
-			error_exit("Entrada no válida.");
-		push_number_to_stack(ft_atoi(numbers[i]), a);
+		aux = aux->next;
 		i++;
 	}
-	free_split(numbers);
+	return (i);
 }
 
-void	free_split(char **split)
+int	lst_getmin(t_stack *stack)
 {
-	int	i;
+	t_node	*current;
+	int		min;
+
+	if (!stack || !stack->top)
+		error_exit("Error: Pila vacía.");
+	current = stack->top;
+	min = current->value;
+	while (current)
+	{
+		if (current->value < min)
+			min = current->value;
+		current = current->next;
+	}
+	return (min);
+}
+
+int	lst_getmax(t_stack *stack)
+{
+	t_node	*current;
+	int		max;
+
+	if (!stack || !stack->top)
+		error_exit("Error: Pila vacía.");
+	current = stack->top;
+	max = current->value;
+	while (current)
+	{
+		if (current->value > max)
+			max = current->value;
+		current = current->next;
+	}
+	return (max);
+}
+
+int	lst_maxindex(t_node *stack)
+{
+	t_node	*aux;
+	t_node	*max;
+
+	aux = stack->next;
+	max = stack;
+	while (aux)
+	{
+		if (aux->index > max->index)
+			max = aux;
+		aux = aux->next;
+	}
+	return (max->index);
+}
+
+int	lst_getindex(long num, t_node *stack)
+{
+	t_node	*aux;
+	int		i;
 
 	i = 0;
-	while (split[i])
+	aux = stack;
+	while (aux)
 	{
-		free(split[i]);
+		if (aux->value == num)
+			return (i);
+		aux = aux->next;
 		i++;
 	}
-	free(split);
+	return (-1);
 }
 
-void	parse_arguments(int argc, char **argv, t_stack *a)
+int	find_max_index(t_stack *stack)
 {
-	int	i;
+	t_node	*current;
+	int		max_index;
 
-	i = 1;
-	while (i < argc)
+	if (!stack || !stack->top)
+		error_exit("Error: Pila vacía.");
+	current = stack->top;
+	max_index = current->index;
+	while (current)
 	{
-		if (ft_strchr(argv[i], ' '))
-			process_quoted_argument(argv[i], a);
-		else
+		if (current->index > max_index)
+			max_index = current->index;
+		current = current->next;
+	}
+	return (max_index);
+}
+
+void	assign_indices(t_stack *stack)
+{
+	t_node	*current;
+	t_node	*compare;
+
+	if (!stack || !stack->top)
+		return;
+	current = stack->top;
+	while (current)
+	{
+		int rank = 0;
+		compare = stack->top;
+		while (compare)
 		{
-			if (!is_valid_number(argv[i]))
-				error_exit("Entrada no válida.");
-			push_number_to_stack(ft_atoi(argv[i]), a);
+			if (compare->value < current->value)
+				rank++;
+			compare = compare->next;
 		}
-		i++;
+		current->index = rank;
+		current = current->next;
 	}
 }
 
-int	is_valid_number(const char *str)
-{
-	if (!ft_isdigit(*str) && *str != '-' && *str != '+')
-		return (0);
-	if ((*str == '-' || *str == '+') && !ft_isdigit(*(str + 1)))
-		return (0);
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-			return (0);
-		str++;
-	}
-	return (1);
-}
-
-// int	main(int argc, char **argv)
+// void	order4(t_stack **head)
 // {
-// 	t_stack	a;
-// 	t_stack	b;
+// 	t_stack	*stack_b;
+// 	int		min;
 
-// 	if (argc < 2)
-// 		return (0);
-// 	initialize_stack(&a);
-// 	initialize_stack(&b);
-// 	parse_arguments(argc, argv, &a);
-// 	sort_stack(&a, &b);
-// 	free_stack(&a);
-// 	free_stack(&b);
-// 	return (0);
+// 	stack_b = NULL;
+// 	min = get_min_element(*head);
+// 	if (*(*head)->next->content == min)
+// 		ra(head, 1);
+// 	else if (*(*head)->next->next->content == min)
+// 	{
+// 		ra(head, 1);
+// 		ra(head, 1);
+// 	}
+// 	else if (*(*head)->next->next->next->content == min)
+// 		rra(head, 1);
+// 	if (is_ordered(*head))
+// 		return ;
+// 	pb(head, &stack_b, 1);
+// 	order3(head);
+// 	pa(&stack_b, head, 1);
+// }
+
+// void	order5(t_stack **head)
+// {
+// 	t_stack	*stack_b;
+// 	int		min;
+
+// 	stack_b = NULL;
+// 	min = get_min_element(*head);
+// 	if (*(*head)->next->content == min)
+// 		ra(head, 1);
+// 	else if (*(*head)->next->next->content == min)
+// 	{
+// 		ra(head, 1);
+// 		ra(head, 1);
+// 	}
+// 	else if (*(*head)->next->next->next->content == min)
+// 	{
+// 		rra(head, 1);
+// 		rra(head, 1);
+// 	}
+// 	else if (*(*head)->next->next->next->next->content == min)
+// 		rra(head, 1);
+// 	if (is_ordered(*head))
+// 		return ;
+// 	pb(head, &stack_b, 1);
+// 	order4(head);
+// 	pa(&stack_b, head, 1);
+
+// int	get_min_element(t_stack *head)
+// {
+// 	int	min;
+
+// 	min = *head->content;
+// 	head = head->next;
+// 	while (head != NULL)
+// 	{
+// 		if (*head->content < min)
+// 			min = *head->content;
+// 		head = head->next;
+// 	}
+// 	return (min);
 // }

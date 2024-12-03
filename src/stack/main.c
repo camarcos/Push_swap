@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:26:18 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/30 10:52:09 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/03 16:26:32 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ void	sort_stack(t_stack *a, t_stack *b)
 	else if (a->size == 3)
 		sort_three(a);
 	else if (a->size == 4 || a->size == 5)
+	{
 		sort_small_stack(a, b);
+		//print_stack(a);			
+	}	
 	else
 		sort_large_stack(a, b);
 	free_list(a);

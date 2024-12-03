@@ -6,7 +6,7 @@
 #    By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/12 10:42:37 by camarcos          #+#    #+#              #
-#    Updated: 2024/11/29 09:23:29 by carolinamc       ###   ########.fr        #
+#    Updated: 2024/12/03 14:57:14 by carolinamc       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ VPATH = src:src/movements:src/stack
 
 # SOURCE FILES
 SRC		= 	swap.c push.c rotate.c reverse_rotate.c \
-					utils.c create_free.c arguments.c main.c
+					utils.c create_free.c arguments.c main.c pruebas.c \
 
 # OBJECT FILES
 OBJ_FILES 		= $(SRC:.c=.o)
