@@ -3,38 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   pruebas.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
+/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:28:44 by camarcos          #+#    #+#             */
-/*   Updated: 2024/12/03 16:49:28 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/03 17:38:58 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-// void ft_parse_args(char **argv, t_stack **a)
-// {
-// 	int i;
-// 	char **split;
-// 	long num;
+void ft_parse_args(char **argv, t_stack **a)
+{
+	int i;
+	char **split;
+	long num;
 
-// 	i = 0;
-// 	while (argv[++i])
-// 	{
-// 		split = ft_split(argv[i], ' ');
-// 		if (!split[1])
-// 		{
-// 			if (!split[0])
-// 			{
-// 				ft_free_split(split);
-// 				error_exit("Error: no es un número entero.");
-// 			}
-// 			num = ft_atol_strict(split, 0);
-// 		}
-// 		free_split(split);
-// 	}
-// 	duplicates(*a);
-// }
+	i = 0;
+	while (argv[++i])
+	{
+		split = ft_split(argv[i], ' ');
+		if (!split[1])
+		{
+			if (!split[0])
+			{
+				free_split(split);
+				error_exit("Error: no es un número entero.");
+			}
+			num = ft_atol_strict(split, 0);
+		}
+		free_split(split);
+	}
+	duplicates(*a);
+}
 
 void	radix(t_stack *a, t_stack *b)
 {
@@ -202,68 +202,7 @@ void	assign_indices(t_stack *stack)
 		current = current->next;
 	}
 }
-
-// void	order4(t_stack **head)
-// {
-// 	t_stack	*stack_b;
-// 	int		min;
-
-// 	stack_b = NULL;
-// 	min = get_min_element(*head);
-// 	if (*(*head)->next->content == min)
-// 		ra(head, 1);
-// 	else if (*(*head)->next->next->content == min)
-// 	{
-// 		ra(head, 1);
-// 		ra(head, 1);
-// 	}
-// 	else if (*(*head)->next->next->next->content == min)
-// 		rra(head, 1);
-// 	if (is_ordered(*head))
-// 		return ;
-// 	pb(head, &stack_b, 1);
-// 	order3(head);
-// 	pa(&stack_b, head, 1);
-// }
-
-// void	order5(t_stack **head)
-// {
-// 	t_stack	*stack_b;
-// 	int		min;
-
-// 	stack_b = NULL;
-// 	min = get_min_element(*head);
-// 	if (*(*head)->next->content == min)
-// 		ra(head, 1);
-// 	else if (*(*head)->next->next->content == min)
-// 	{
-// 		ra(head, 1);
-// 		ra(head, 1);
-// 	}
-// 	else if (*(*head)->next->next->next->content == min)
-// 	{
-// 		rra(head, 1);
-// 		rra(head, 1);
-// 	}
-// 	else if (*(*head)->next->next->next->next->content == min)
-// 		rra(head, 1);
-// 	if (is_ordered(*head))
-// 		return ;
-// 	pb(head, &stack_b, 1);
-// 	order4(head);
-// 	pa(&stack_b, head, 1);
-
-// int	get_min_element(t_stack *head)
-// {
-// 	int	min;
-
-// 	min = *head->content;
-// 	head = head->next;
-// 	while (head != NULL)
-// 	{
-// 		if (*head->content < min)
-// 			min = *head->content;
-// 		head = head->next;
-// 	}
-// 	return (min);
-// }
+void	free_split()
+{
+	
+}
