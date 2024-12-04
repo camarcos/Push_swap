@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:55:24 by camarcos          #+#    #+#             */
-/*   Updated: 2024/12/04 22:28:36 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/04 22:33:50 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ void	sort_five(t_stack *a, t_stack *b)
 	}
 	else if (node->next->next->next->next->value == min)
 		rra(a);
-	// else if (is_sorted(a))
-	// 	return ;
 	pb(a, b);
 	sort_four(a, b);
 	pa(a, b);
