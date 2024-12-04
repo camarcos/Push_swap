@@ -6,37 +6,11 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:03:41 by camarcos          #+#    #+#             */
-/*   Updated: 2024/11/30 10:49:31 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/04 16:47:36 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
-
-t_node	*create_node(int value)
-{
-	t_node	*new_node;
-
-	new_node = (t_node *)malloc(sizeof(t_node));
-	if (!new_node)
-		error_exit("Entrada no válida: no es un número entero.");
-	new_node->value = value;
-	new_node->next = NULL;
-	return (new_node);
-}
-// crea un nuevo nodo, asigna el valor y lo inicializa
-
-t_stack	*init_stack(void)
-{
-	t_stack	*stack;
-
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	if (!stack)
-		return (NULL);
-	stack->top = NULL;
-	stack->size = 0;
-	return (stack);
-}
-// inicializa una estructura t_stack con top en NULL y tamaño 0
 
 void	push_stack(t_stack *stack, int value)
 {
@@ -99,3 +73,33 @@ void	free_list(t_stack *stack)
 	free(stack);
 }
 // libera toda la memoria ocupada por los nodos y la estructura de la pila
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+// libera la memoria ocupada por un array de strings
+
+int	ft_listsize(t_node *stack)
+{
+	t_node	*aux;
+	int		i;
+
+	i = 0;
+	aux = stack;
+	while (aux)
+	{
+		aux = aux->next;
+		i++;
+	}
+	return (i);
+}
+// devuelve el número de nodos en la pila

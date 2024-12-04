@@ -5,118 +5,99 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 13:45:57 by camarcos          #+#    #+#             */
-/*   Updated: 2024/12/03 09:25:02 by carolinamc       ###   ########.fr       */
+/*   Created: 2024/12/04 16:48:12 by carolinamc        #+#    #+#             */
+/*   Updated: 2024/12/04 17:40:37 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int	is_sorted(t_stack *a)
+// int	print_stack(t_stack *stack)
+// {
+// 	t_node	*current;
+
+// 	if (!stack || !stack->top)
+// 		return (0);
+// 	current = stack->top;
+// 	while (current)
+// 	{
+// 		ft_printf("%d\n", current->value);
+// 		current = current->next;
+// 	}
+// 	return (1);
+// }
+//imprimir numeros del stack
+
+int	find_max(t_stack *a)
 {
 	t_node	*current;
+	int		max;
 
-	if (!a || a->size <= 1)
-		return (1);
+	if (!a || !a->top)
+		error_exit("Error: pila vacía.");
 	current = a->top;
-	while (current && current->next)
-	{
-		if (current->value > current->next->value)
-			return (0);
-		current = current->next;
-	}
-	return (1);
-}
-
-long	validate_max_min(const char **str, long result, int sign)
-{
-	while (**str >= '0' && **str <= '9')
-	{
-		if (sign == 1 && result > (LONG_MAX - (**str - '0')) / 10)
-			return (LONG_MAX);
-		if (sign == -1 && result > (LONG_MAX - (**str - '0')) / 10)
-			return (LONG_MIN);
-		result = result * 10 + (**str - '0');
-		(*str)++;
-	}
-	return (result);
-}
-
-long	ft_atol(const char *str)
-{
-	long	result;
-	int		sign;
-
-	result = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	result = validate_max_min(&str, result, sign);
-	if (*str)
-		error_exit("Error: no es un número entero.");
-	if (sign == -1)
-		result = -result;
-	return (result);
-}
-//mirar si son solo numeros
-
-int	duplicates(t_stack *a)
-{
-	t_node	*current;
-	t_node	*check;
-
-	current = a->top;
+	max = INT_MIN;
 	while (current)
 	{
-		check = current->next;
-		while (check)
-		{
-			if (current->value == check->value)
-				return (1);
-			check = check->next;
-		}
+		if (current->value > max)
+			max = current->value;
 		current = current->next;
 	}
-	return (0);
+	return (max);
 }
-//comprobar si hay repetidos
+//encontrar el valor máximo de la pila
 
-void	error_exit(const char *message)
-{
-	(void) message;
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
-//mensaje de error y salida del programa
-
-int	calculate_max_bits(int max_num)
-{
-	int	max_bits;
-
-	max_bits = 0;
-	while ((max_num >> max_bits) != 0)
-		max_bits++;
-	return (max_bits);
-}
-//calcular el numerode bits para saber el numero de iteraciones necesario
-
-int	print_stack(t_stack *stack)
+int	lst_getmin(t_stack *stack)
 {
 	t_node	*current;
+	int		min;
 
 	if (!stack || !stack->top)
-		return (0);
+		error_exit("Error. Pila vacía.");
 	current = stack->top;
+	min = current->value;
 	while (current)
 	{
-		printf("%d\n", current->value);
+		if (current->value < min)
+			min = current->value;
 		current = current->next;
 	}
-	return (1);
+	return (min);
 }
+//encontrar el valor mínimo de la pila
+
+int	lst_getmax(t_stack *stack)
+{
+	t_node	*current;
+	int		max;
+
+	if (!stack || !stack->top)
+		error_exit("Error. Pila vacía.");
+	current = stack->top;
+	max = current->value;
+	while (current)
+	{
+		if (current->value > max)
+			max = current->value;
+		current = current->next;
+	}
+	return (max);
+}
+//encontrar el valor máximo de la pila
+
+int	lst_maxindex(t_node *stack)
+{
+	t_node	*aux;
+	t_node	*max;
+
+	aux = stack->next;
+	max = stack;
+	while (aux)
+	{
+		if (aux->index > max->index)
+			max = aux;
+		aux = aux->next;
+	}
+	return (max->index);
+}
+//encontrar el índice máximo de la pila
