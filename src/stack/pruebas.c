@@ -3,38 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   pruebas.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:28:44 by camarcos          #+#    #+#             */
-/*   Updated: 2024/12/03 17:38:58 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/12/04 11:17:40 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void ft_parse_args(char **argv, t_stack **a)
+void	parse_arguments(int argc, char **argv, t_stack **a)
 {
-	int i;
-	char **split;
-	long num;
+	char	**split;
+	int		i;
+	int		j;
+	long	num;
 
-	i = 0;
-	while (argv[++i])
+	*a = init_stack();
+	if (!(*a))
 	{
+		error_exit("Error al inicializar stack.");
+	}
+	i = 1;
+	while (i < argc)
+	{	
 		split = ft_split(argv[i], ' ');
-		if (!split[1])
+		if (!split)
+			error_exit("Error al dividir argumentos.");
+		j = 0;
+		while (split[j])
 		{
-			if (!split[0])
+			num = ft_atol(split[j]);
+			if (num < INT_MIN || num > INT_MAX)
 			{
-				free_split(split);
-				error_exit("Error: no es un número entero.");
+				error_exit("Error: Número fuera de rango.");
 			}
-			num = ft_atol_strict(split, 0);
+			push_stack(*a, num);
+			j++;
 		}
 		free_split(split);
+		i++;
 	}
-	duplicates(*a);
+	if (duplicates(*a))
+		error_exit("Error: Hay números duplicados.");
 }
+
 
 void	radix(t_stack *a, t_stack *b)
 {
@@ -54,22 +67,13 @@ void	radix(t_stack *a, t_stack *b)
         while (j < stack_size)
         {
             if (((a->top->index >> i) & 1) == 0)
-			{
                 pb(a, b);
-				// printf("hola\n");
-			}	
             else
                 ra(a);
             j++;
         }
-        // if (i < bin_digits - 1)
-        // {
             while (b->size > 0)
-			{
-                pa(a, b);
-				// printf("adios\n");	
-			}
-        //}
+                pa(a, b);	
         i++;
     }
     while (b->size > 0)
@@ -202,7 +206,15 @@ void	assign_indices(t_stack *stack)
 		current = current->next;
 	}
 }
-void	free_split()
+void	free_split(char **split)
 {
-	
+	int i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }

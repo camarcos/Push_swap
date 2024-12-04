@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:26:18 by camarcos          #+#    #+#             */
-/*   Updated: 2024/12/03 17:22:42 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:54:51 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	initialize_stacks(int argc, char **argv, t_stack **a, t_stack **b)
 	int	i;
 
 	i = 1;
-	ft_parse_args(argv, a);
+	parse_arguments(argc ,argv, a);
 	*a = init_stack();
 	*b = init_stack();
 	if (!(*a) || !(*b))

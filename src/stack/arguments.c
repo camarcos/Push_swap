@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:55:24 by camarcos          #+#    #+#             */
-/*   Updated: 2024/12/03 17:18:45 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:13:00 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,19 +120,7 @@ void	process_bits(t_stack *a, t_stack *b, int i)
 
 void	sort_large_stack(t_stack *a, t_stack *b)
 {
-	// int	max_num;
-	// int	max_bits;
-	//int	i;
-
-	// max_num = find_max(a);
-	// max_bits = calculate_max_bits(max_num);
-	//i = 0;
-	// while (i < max_bits)
-	// {
 		radix(a, b);
-	// 	i++;
-	// }
-	//print_stack(a);
 	if (!is_sorted(a))
 		error_exit("Error: no se ordenó correctamente.\n");
 }

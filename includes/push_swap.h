@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:42:14 by camarcos          #+#    #+#             */
-/*   Updated: 2024/12/03 17:22:09 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:48:29 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		find_max(t_stack *a);
 int		main(int argc, char **argv);
 
 //pruebas
-void	ft_parse_args(char **argv, t_stack **a);
+void	parse_arguments(int argc, char **argv, t_stack **a);
 void	radix(t_stack *a, t_stack *b);
 int		ft_listsize(t_node *stack);
 int		lst_getmin(t_stack *stack);
@@ -95,5 +95,6 @@ int		lst_maxindex(t_node *stack);
 int		lst_getindex(long num, t_node *stack);
 int		find_max_index(t_stack *stack);
 void	assign_indices(t_stack *stack);
+void	free_split(char **split);
 
 #endif
