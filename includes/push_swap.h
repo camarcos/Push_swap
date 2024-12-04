@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:42:14 by camarcos          #+#    #+#             */
-/*   Updated: 2024/12/04 18:13:54 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/12/04 22:17:36 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ typedef struct s_node //para representar el nodo en stack
 {
 	int				value;
 	struct s_node	*next;
-	int	index;
-	
+	int				index;
 }		t_node;
 
 typedef struct s_stack //para represertar el stack completo
@@ -67,7 +66,6 @@ int		find_max(t_stack *a);
 int		lst_getmin(t_stack *stack);
 int		lst_getmax(t_stack *stack);
 int		lst_maxindex(t_node *stack);
-int		min_element(t_stack *stack);
 
 //arguments
 void	sort_two(t_stack *a);
@@ -98,9 +96,10 @@ void	parse_arguments(int argc, char **argv, t_stack **a);
 void	process_split_arguments(char **split, t_stack **a);
 
 //index
-int	find_max_index(t_stack *stack);
-int	lst_getindex(long num, t_node *stack);
+int		find_max_index(t_stack *stack);
+int		lst_getindex(long num, t_node *stack);
 void	assign_indices(t_stack *stack);
+int		min_element(t_stack *stack);
 
 //main
 int		main(int argc, char **argv);

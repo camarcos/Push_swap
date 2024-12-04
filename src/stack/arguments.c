@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:55:24 by camarcos          #+#    #+#             */
-/*   Updated: 2024/12/04 18:56:21 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/12/04 22:28:36 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ void	sort_three(t_stack *a)
 
 void	sort_four(t_stack *a, t_stack *b)
 {
-	int	min;
-	t_node *node = a->top;
+	int		min;
+	t_node	*node;
 
+	node = a->top;
 	min = min_element(a);
 	if (node->next->value == min)
 		ra(a);
@@ -63,8 +64,7 @@ void	sort_four(t_stack *a, t_stack *b)
 	else if (node->next->next->next->value == min)
 		rra(a);
 	else if (is_sorted(a))
-		return;
-	
+		return ;
 	pb(a, b);
 	sort_three(a);
 	pa(a, b);
@@ -73,12 +73,13 @@ void	sort_four(t_stack *a, t_stack *b)
 
 void	sort_five(t_stack *a, t_stack *b)
 {
-	int	min;
-	
+	int		min;
+	t_node	*node;
+
 	if (a->size == 4)
 		return (sort_four(a, b));
 	min = min_element(a);
-	t_node *node = a->top;
+	node = a->top;
 	if (node->next->value == min)
 		ra(a);
 	else if (node->next->next->value == min)
@@ -93,8 +94,8 @@ void	sort_five(t_stack *a, t_stack *b)
 	}
 	else if (node->next->next->next->next->value == min)
 		rra(a);
-	else if (is_sorted(a))
-		return;
+	// else if (is_sorted(a))
+	// 	return ;
 	pb(a, b);
 	sort_four(a, b);
 	pa(a, b);

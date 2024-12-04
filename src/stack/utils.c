@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:48:12 by carolinamc        #+#    #+#             */
-/*   Updated: 2024/12/04 18:31:21 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/12/04 22:18:10 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +102,3 @@ int	lst_maxindex(t_node *stack)
 	return (max->index);
 }
 //encontrar el índice máximo de la pila
-
-
-int min_element(t_stack *stack)
-{
-	t_node *head = stack->top;
-	int min = INT_MAX;
-
-	while (head)
-	{
-		if (head->value < min)
-			min = head->value;
-		head = head->next;
-	}
-	return min;
-}

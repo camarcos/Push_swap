@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valide_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:41:22 by carolinamc        #+#    #+#             */
-/*   Updated: 2024/12/04 18:43:40 by camarcos         ###   ########.fr       */
+/*   Updated: 2024/12/04 22:31:37 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int	is_sorted(t_stack *a)
 
 void	error_exit(const char *message)
 {
-	(void)message;		
-	write(2, "Error.\n", 6);
+	(void)message;
+	write(2, "Error.\n", 7);
 	exit(EXIT_FAILURE);
 }
 //mensaje de error y salida del programa

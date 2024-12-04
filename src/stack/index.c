@@ -6,7 +6,7 @@
 /*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:55:35 by carolinamc        #+#    #+#             */
-/*   Updated: 2024/12/04 16:58:22 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/04 22:21:21 by carolinamc       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,3 +73,20 @@ void	assign_indices(t_stack *stack)
 	}
 }
 //asigna un índice a cada nodo de la pila, según su valor
+
+int	min_element(t_stack *stack)
+{
+	t_node	*head;
+	int		min;
+
+	head = stack->top;
+	min = head->value;
+	while (head)
+	{
+		if (head->value < min)
+			min = head->value;
+		head = head->next;
+	}
+	return (min);
+}
+//devuelve el valor más bajo de la pila
