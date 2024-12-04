@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
+/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:48:12 by carolinamc        #+#    #+#             */
-/*   Updated: 2024/12/04 17:40:37 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/04 18:31:21 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+#include <limits.h>
 
-// int	print_stack(t_stack *stack)
-// {
-// 	t_node	*current;
+int	print_stack(t_stack *stack)
+{
+	t_node	*current;
 
-// 	if (!stack || !stack->top)
-// 		return (0);
-// 	current = stack->top;
-// 	while (current)
-// 	{
-// 		ft_printf("%d\n", current->value);
-// 		current = current->next;
-// 	}
-// 	return (1);
-// }
+	if (!stack || !stack->top)
+		return (0);
+	current = stack->top;
+	while (current)
+	{
+		printf("%d\n", current->value);
+		current = current->next;
+	}
+	return (1);
+}
 //imprimir numeros del stack
 
 int	find_max(t_stack *a)
@@ -101,3 +102,18 @@ int	lst_maxindex(t_node *stack)
 	return (max->index);
 }
 //encontrar el índice máximo de la pila
+
+
+int min_element(t_stack *stack)
+{
+	t_node *head = stack->top;
+	int min = INT_MAX;
+
+	while (head)
+	{
+		if (head->value < min)
+			min = head->value;
+		head = head->next;
+	}
+	return min;
+}

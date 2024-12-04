@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valide_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
+/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:41:22 by carolinamc        #+#    #+#             */
-/*   Updated: 2024/12/04 17:44:02 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/04 18:43:40 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ long	ft_atol(const char *str)
 			sign = -1;
 		str++;
 	}
+	if (!(*str))
+		error_exit("Error: no es un número entero.");
 	while (ft_isdigit(*str))
 	{
 		result = result * 10 + (*str - '0');

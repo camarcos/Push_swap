@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
+/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:55:24 by camarcos          #+#    #+#             */
-/*   Updated: 2024/12/04 17:28:35 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/04 18:56:21 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,40 +47,57 @@ void	sort_three(t_stack *a)
 }
 //cuando hay tres argumentos
 
-void	sort_four(t_stack *a)
+void	sort_four(t_stack *a, t_stack *b)
 {
-	if (a->top->value > a->top->next->value)
-		sa(a);
-	if (a->top->next->value > a->top->next->next->value)
+	int	min;
+	t_node *node = a->top;
+
+	min = min_element(a);
+	if (node->next->value == min)
+		ra(a);
+	else if (node->next->next->value == min)
 	{
 		ra(a);
-		sa(a);
-		rra(a);
+		ra(a);
 	}
-	if (a->top->value > a->top->next->value)
-		sa(a);
+	else if (node->next->next->next->value == min)
+		rra(a);
+	else if (is_sorted(a))
+		return;
+	
+	pb(a, b);
+	sort_three(a);
+	pa(a, b);
 }
 //cuando hay cuatro argumentos
 
-void	sort_small_stack(t_stack *a, t_stack *b)
+void	sort_five(t_stack *a, t_stack *b)
 {
-	while (a->size > 3)
-		pb(a, b);
-	if (a->size == 3)
-		sort_three(a);
-	while (b->size > 0)
-	{
-		pa(a, b);
-		if (a->top->value > a->top->next->value)
-			sa(a);
-	}
+	int	min;
+	
 	if (a->size == 4)
-		sort_four(a);
-	else if (a->size == 5)
+		return (sort_four(a, b));
+	min = min_element(a);
+	t_node *node = a->top;
+	if (node->next->value == min)
+		ra(a);
+	else if (node->next->next->value == min)
 	{
-		if (a->top->value > a->top->next->value)
-			sa(a);
+		ra(a);
+		ra(a);
 	}
+	else if (node->next->next->next->value == min)
+	{
+		rra(a);
+		rra(a);
+	}
+	else if (node->next->next->next->next->value == min)
+		rra(a);
+	else if (is_sorted(a))
+		return;
+	pb(a, b);
+	sort_four(a, b);
+	pa(a, b);
 }
 //para contolar con pocos argumentos
 
@@ -96,8 +113,10 @@ void	sort_stack(t_stack *a, t_stack *b)
 		sort_two(a);
 	else if (a->size == 3)
 		sort_three(a);
-	else if (a->size == 4 || a->size == 5)
-		sort_small_stack(a, b);
+	else if (a->size == 4)
+		sort_four(a, b);
+	else if (a->size == 5)
+		sort_five(a, b);
 	else
 		sort_large_stack(a, b);
 	free_list(a);

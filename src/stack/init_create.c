@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_create.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carolinamc <carolinamc@student.42.fr>      +#+  +:+       +#+        */
+/*   By: camarcos <camarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:36:46 by carolinamc        #+#    #+#             */
-/*   Updated: 2024/12/04 17:13:52 by carolinamc       ###   ########.fr       */
+/*   Updated: 2024/12/04 18:53:32 by camarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	process_split_arguments(char **split, t_stack **a)
 	long	num;
 
 	j = 0;
+	if (!split[j])
+		error_exit("Error al dividir argumentos.");
 	while (split[j])
 	{
 		num = ft_atol(split[j]);
